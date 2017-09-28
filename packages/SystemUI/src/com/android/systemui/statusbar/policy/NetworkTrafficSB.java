@@ -439,7 +439,7 @@ public class NetworkTrafficSB extends TextView implements StatusIconDisplayable 
     }
 
     private void updateVisibility() {
-        if (!CutoutUtils.hasBigCutout(mContext) && mIsEnabled &&
+        if (!CutoutUtils.hasCenteredCutout(mContext) && mIsEnabled &&
                 mTrafficVisible && mSystemIconVisible) {
             setVisibility(View.VISIBLE);
         } else {

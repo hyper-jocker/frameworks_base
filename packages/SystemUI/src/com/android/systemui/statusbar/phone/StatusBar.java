@@ -4833,6 +4833,10 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LESS_BORING_HEADS_UP),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HEADS_UP_STOPLIST_VALUES), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.HEADS_UP_BLACKLIST_VALUES), false, this);
         }
 
         @Override
@@ -4848,6 +4852,8 @@ public class StatusBar extends SystemUI implements DemoMode,
             setStatusDoubleTapToSleep();
             setGamingMode();
 	    setUseLessBoringHeadsUp();
+            setHeadsUpStoplist();
+            setHeadsUpBlacklist();
         }
     }
 
@@ -4872,6 +4878,16 @@ public class StatusBar extends SystemUI implements DemoMode,
                 Settings.System.LESS_BORING_HEADS_UP, 0,
                 UserHandle.USER_CURRENT) == 1;
         mNotificationInterruptionStateProvider.setUseLessBoringHeadsUp(lessBoringHeadsUp);
+    }
+
+    private void setHeadsUpStoplist() {
+        if (mPresenter != null)
+            mPresenter.setHeadsUpStoplist();
+    }
+
+    private void setHeadsUpBlacklist() {
+        if (mPresenter != null)
+            mPresenter.setHeadsUpBlacklist();
     }
 
     private void setNavBarInteractionMode(String overlayPackage) {
