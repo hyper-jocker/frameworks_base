@@ -5409,4 +5409,7 @@
     <!-- ChooserActivity - Alphabetically sorted apps list label. [CHAR LIMIT=NONE] -->
     <string name="chooser_all_apps_button_label">Apps list</string>
 
+    <!-- Screen recorder -->
+    <string name="global_action_screenrecord">Screenrecord</string>
+
 </resources>
