@@ -462,6 +462,7 @@ public class StatusBar extends SystemUI implements DemoMode,
     public ImageView mQSBlurView;
     private boolean blurperformed = false;
     protected static NotificationPanelView mStaticNotificationPanel;
+    private static Context mStaticContext;
 
     // ensure quick settings is disabled until the current user makes it through the setup wizard
     @VisibleForTesting
@@ -851,8 +852,10 @@ public class StatusBar extends SystemUI implements DemoMode,
         mStatusBarWindow.setOnTouchListener(getStatusBarWindowTouchListener());
 
         // TODO: Deal with the ugliness that comes from having some of the statusbar broken out
-        // into fragments, but the rest here, it leaves some awkward lifecycle and whatnot.
-        mNotificationPanel = mStatusBarWindow.findViewById(R.id.notification_panel);
+        // into fragments, but the rest here, it leaves some awkward lifecycle and whatnot.;
+    	mNotificationPanel = mStatusBarWindow.findViewById(R.id.notification_panel);
+	mStaticNotificationPanel = mNotificationPanel;
+	mStaticContext = mContext;
         mStackScroller = mStatusBarWindow.findViewById(R.id.notification_stack_scroller);
         mZenController.addCallback(this);
         mQSBlurView = mStatusBarWindow.findViewById(R.id.qs_blur);
@@ -1085,7 +1088,7 @@ public class StatusBar extends SystemUI implements DemoMode,
 
         int QSBlurAlpha = Math.round(255.0f * mStaticNotificationPanel.getExpandedFraction());
 
-        if (QSBlurAlpha > 0 && !blurperformed && mState != StatusBarState.KEYGUARD && isQSBlurEnabled()) {
+        if (QSBlurAlpha > 0 && !blurperformed && !mIsKeyguard && isQSBlurEnabled()) {
             Bitmap bittemp = ImageUtilities.blurImage(mContext, ImageUtilities.screenshotSurface(mContext));
             Drawable blurbackground = new BitmapDrawable(mContext.getResources(), bittemp);
             blurperformed = true;
@@ -3163,6 +3166,7 @@ public class StatusBar extends SystemUI implements DemoMode,
     }
 
     private boolean updateIsKeyguard() {
+        updateBlurVisibility();
         boolean wakeAndUnlocking = mBiometricUnlockController.getMode()
                 == BiometricUnlockController.MODE_WAKE_AND_UNLOCK;
 
