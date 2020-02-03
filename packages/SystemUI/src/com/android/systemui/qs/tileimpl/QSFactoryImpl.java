@@ -34,6 +34,7 @@ import com.android.systemui.qs.tiles.CaffeineTile;
 import com.android.systemui.qs.tiles.CastTile;
 import com.android.systemui.qs.tiles.CellularTile;
 import com.android.systemui.qs.tiles.ColorInversionTile;
+import com.android.systemui.qs.tiles.CompassTile;
 import com.android.systemui.qs.tiles.DataSaverTile;
 import com.android.systemui.qs.tiles.DndTile;
 import com.android.systemui.qs.tiles.FlashlightTile;
@@ -81,6 +82,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<PowerShareTile> mPowerShareTileProvider;
     private final Provider<CaffeineTile> mCaffeineTileProvider;
     private final Provider<AODTile> mAODTileProvider;
+    private final Provider<CompassTile> mCompassTileProvider;
 
     private QSTileHost mHost;
 
@@ -106,7 +108,8 @@ public class QSFactoryImpl implements QSFactory {
             Provider<UiModeNightTile> uiModeNightTileProvider,
             Provider<PowerShareTile> powerShareTileProvider,
 	    Provider<CaffeineTile> caffeineTileProvider,
-	    Provider<AODTile> aodTileProvider) {
+	    Provider<AODTile> aodTileProvider,
+	    Provider<CompassTile> compassTileProvider) {
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
         mCellularTileProvider = cellularTileProvider;
@@ -129,6 +132,7 @@ public class QSFactoryImpl implements QSFactory {
         mPowerShareTileProvider = powerShareTileProvider;
 	mCaffeineTileProvider = caffeineTileProvider;
 	mAODTileProvider = aodTileProvider;
+	mCompassTileProvider = compassTileProvider;
     }
 
     public void setHost(QSTileHost host) {
@@ -190,6 +194,8 @@ public class QSFactoryImpl implements QSFactory {
 		return mCaffeineTileProvider.get();
 	    case "aod":
 		return mAODTileProvider.get();
+	    case "compass":
+		return mCompassTileProvider.get();
         }
 
         // Intent tiles.
