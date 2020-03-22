@@ -9,5 +9,8 @@
     <color name="edge_light_red">#ea4234</color>
     <color name="edge_light_yellow">#fbbc06</color>
 
+    <!-- Screenrecord -->
+    <color name="screenrecord_icon_color">#B71C1C</color>
+
 </resources>
 
