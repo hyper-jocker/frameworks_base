@@ -4964,6 +4964,14 @@ public final class Settings {
          */
         public static final String SCREENRECORD_VIDEO_BITRATE = "screenrecord_video_bitrate";
 
+	/**
+         * Controls whether to show R style notification headers
+         * @hide
+         */
+        public static final String NOTIFICATION_HEADERS = "notification_headers";
+
+        private static final Validator NOTIFICATION_HEADERS_VALIDATOR = BOOLEAN_VALIDATOR;    
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
@@ -5043,7 +5051,8 @@ public final class Settings {
             DOUBLE_TAP_SLEEP_LOCKSCREEN,
             VIBRATE_ON_CONNECT,
             VIBRATE_ON_CALLWAITING,
-            VIBRATE_ON_DISCONNECT
+            VIBRATE_ON_DISCONNECT,
+            NOTIFICATION_HEADERS
         };
 
         /**
@@ -5339,6 +5348,7 @@ public final class Settings {
             VALIDATORS.put(VIBRATE_ON_CONNECT, VIBRATE_ON_CONNECT_VALIDATOR);
             VALIDATORS.put(VIBRATE_ON_CALLWAITING, VIBRATE_ON_CALLWAITING_VALIDATOR);
             VALIDATORS.put(VIBRATE_ON_DISCONNECT, VIBRATE_ON_DISCONNECT_VALIDATOR);
+            VALIDATORS.put(NOTIFICATION_HEADERS, NOTIFICATION_HEADERS_VALIDATOR);
         }
 
         /**
