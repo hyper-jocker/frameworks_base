@@ -39,6 +39,7 @@ import com.android.systemui.qs.tiles.DataSaverTile;
 import com.android.systemui.qs.tiles.DataSwitchTile;
 import com.android.systemui.qs.tiles.DndTile;
 import com.android.systemui.qs.tiles.FlashlightTile;
+import com.android.systemui.qs.tiles.HeadsUpTile;
 import com.android.systemui.qs.tiles.HotspotTile;
 import com.android.systemui.qs.tiles.IntentTile;
 import com.android.systemui.qs.tiles.LocationTile;
@@ -87,6 +88,7 @@ public class QSFactoryImpl implements QSFactory {
     private final Provider<CompassTile> mCompassTileProvider;
     private final Provider<ScreenRecordTile> mScreeenRecordTileProvider;
     private final Provider<DataSwitchTile> mDataSwitchTileProvider;
+    private final Provider<HeadsUpTile> mHeadsUpTileProvider;
 
     private QSTileHost mHost;
 
@@ -115,7 +117,8 @@ public class QSFactoryImpl implements QSFactory {
 	    Provider<AODTile> aodTileProvider,
 	    Provider<CompassTile> compassTileProvider,
             Provider<ScreenRecordTile> screenRecordTileProvider,
-            Provider<DataSwitchTile> dataSwitchTileProvider) {
+            Provider<DataSwitchTile> dataSwitchTileProvider,
+            Provider<HeadsUpTile> headsUpTileProvider) {
         mWifiTileProvider = wifiTileProvider;
         mBluetoothTileProvider = bluetoothTileProvider;
         mCellularTileProvider = cellularTileProvider;
@@ -141,6 +144,7 @@ public class QSFactoryImpl implements QSFactory {
 	mCompassTileProvider = compassTileProvider;
         mScreeenRecordTileProvider = screenRecordTileProvider;
         mDataSwitchTileProvider = dataSwitchTileProvider;
+        mHeadsUpTileProvider = headsUpTileProvider;
     }
 
     public void setHost(QSTileHost host) {
@@ -208,6 +212,8 @@ public class QSFactoryImpl implements QSFactory {
                 return mScreeenRecordTileProvider.get();
             case "dataswitch":
                 return mDataSwitchTileProvider.get();
+            case "heads_up":
+                return mHeadsUpTileProvider.get();
         }
 
         // Intent tiles.
