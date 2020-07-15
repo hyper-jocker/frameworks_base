@@ -234,4 +234,6 @@
         <item>restart_bootloader</item>
      </string-array>
 
+    <bool name="config_showEmergencyButtonInPowerMenu">false</bool>
+
 </resources>
