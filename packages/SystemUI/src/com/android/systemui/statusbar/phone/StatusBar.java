@@ -4765,6 +4765,9 @@ public class StatusBar extends SystemUI implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.NAVIGATION_BAR_SHOW),
                     false, this, UserHandle.USER_ALL);
+           resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.DOUBLE_TAP_SLEEP_GESTURE),
+                    false, this, UserHandle.USER_ALL);
         }
 
         @Override
@@ -4777,6 +4780,12 @@ public class StatusBar extends SystemUI implements DemoMode,
         }
 
         public void update() {
+        }
+    }
+
+    private void setStatusDoubleTapToSleep() {
+        if (mStatusBarWindow != null) {
+            mStatusBarWindow.updateSettings();
         }
     }
 
